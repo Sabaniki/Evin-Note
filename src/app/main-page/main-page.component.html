@@ -1,1 +1,7 @@
-<p>main-page works!</p>
+<div class="container">
+  <div class="row">
+    <ng-container *ngFor="let mainPageCard of mainPageCards">
+      <app-main-page-card class="col-md-4" [cardInfo]="mainPageCard"></app-main-page-card>
+    </ng-container>
+  </div>
+</div>
