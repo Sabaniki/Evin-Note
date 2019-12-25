@@ -5,7 +5,8 @@ export class MainPageCard {
   constructor(
     public title: string,
     public text: string,
-    public imgName: string
+    public imgName: string,
+    public redirectTo: string
   ) {
   }
 }

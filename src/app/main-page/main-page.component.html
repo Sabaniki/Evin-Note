@@ -1,7 +1,12 @@
 <div class="container">
   <div class="row">
-    <ng-container *ngFor="let mainPageCard of mainPageCards">
-      <app-main-page-card class="col-md-4" [cardInfo]="mainPageCard"></app-main-page-card>
+  <ng-container *ngFor="let mainPageCard of mainPageCards">
+    <ng-container  *ngIf="isLargeSizeWindow; else smallSizeWindow">
+      <app-main-page-card-big class="card col-md-4" [cardInfo]="mainPageCard"></app-main-page-card-big>
     </ng-container>
+    <ng-template #smallSizeWindow>
+      <app-main-page-card-small class="card col-md-12" [cardInfo]="mainPageCard"></app-main-page-card-small>
+    </ng-template>
+  </ng-container>
   </div>
 </div>

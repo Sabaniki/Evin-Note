@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, NgZone, OnInit} from '@angular/core';
 import {MainPageCard} from './main-page-card/main-page-card';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-main-page',
@@ -11,22 +12,37 @@ export class MainPageComponent implements OnInit {
     new MainPageCard(
       'ノートを閲覧',
       '　自動で作成されたノートを閲覧することができます',
-      'ノートのアイコン素材.svg'
+      'ノートのアイコン素材.svg',
+      'browse-notes'
     ),
     new MainPageCard(
       '授業を追加',
       '　受講している授業をマイリストに登録する事ができます',
-      '授業のフリー素材.svg'
+      '授業のフリー素材.svg',
+      'add-lecture'
     ),
     new MainPageCard(
       '映像をアップロード',
       '授業を録画した映像をアップロードすることができます',
-      'クラウドのアップロードアイコン.svg'
+      'クラウドのアップロードアイコン.svg',
+      'upload-movie'
     ),
   ];
-  constructor() { }
-
-  ngOnInit() {
+  isLargeSizeWindow = true;
+  @Input() cardInfo: MainPageCard;
+  constructor(private router: Router, private ngZone: NgZone) {
+    window.onresize = () => {
+      ngZone.run(() => {
+        this.handleResizeWindow(window.innerWidth);
+      });
+    };
   }
 
+  ngOnInit() {
+    this.handleResizeWindow(window.innerWidth);
+  }
+
+  private handleResizeWindow(width: number) {
+    this.isLargeSizeWindow = 768 < width;
+  }
 }
