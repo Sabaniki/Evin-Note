@@ -1,0 +1,20 @@
+{
+    "evinnote": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-evin-note-evinnote-195713-authRole",
+            "UnauthRoleArn": "arn:aws:iam::331647360528:role/amplify-evin-note-evinnote-195713-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::331647360528:role/amplify-evin-note-evinnote-195713-authRole",
+            "Region": "ap-northeast-1",
+            "DeploymentBucketName": "amplify-evin-note-evinnote-195713-deployment",
+            "UnauthRoleName": "amplify-evin-note-evinnote-195713-unauthRole",
+            "StackName": "amplify-evin-note-evinnote-195713",
+            "StackId": "arn:aws:cloudformation:ap-northeast-1:331647360528:stack/amplify-evin-note-evinnote-195713/7a291380-27ce-11ea-8c16-0693e5f01c30",
+            "AmplifyAppId": "d20h5o2ghlx7v4"
+        },
+        "categories": {
+            "auth": {
+                "evinnote8d0df436": {}
+            }
+        }
+    }
+}

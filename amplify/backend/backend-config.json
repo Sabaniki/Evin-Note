@@ -1,0 +1,9 @@
+{
+	"auth": {
+		"evinnote8d0df436": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}
