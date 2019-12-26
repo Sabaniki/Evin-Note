@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { MainPageCardBigComponent } from './main-page/main-page-card/main-page-card-big/main-page-card-big.component';
 import { MainPageCardSmallComponent } from './main-page/main-page-card/main-page-card-small/main-page-card-small.component';
+import { AddLectureComponent } from './add-lecture/add-lecture.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { MainPageCardSmallComponent } from './main-page/main-page-card/main-page
     MainPageComponent,
     MainPageCardBigComponent,
     MainPageCardSmallComponent,
+    AddLectureComponent,
   ],
   imports: [
     BrowserModule,
