@@ -13,7 +13,7 @@ phases:
       - tar cf /tmp/node_modules.tar node_modules
   install:
     runtime-versions:
-      10
+      nodejs: 10
 artifacts:
   files:
     - '**/*'
