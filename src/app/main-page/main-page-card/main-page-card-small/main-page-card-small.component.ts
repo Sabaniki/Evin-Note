@@ -16,6 +16,6 @@ export class MainPageCardSmallComponent implements OnInit {
   }
 
   onClick() {
-    this.router.navigate(['/' + this.cardInfo.redirectTo]).then(r => console.log(r));
+    this.router.navigate(['/' + this.cardInfo.redirectTo]);
   }
 }
