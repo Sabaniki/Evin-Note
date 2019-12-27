@@ -1,4 +1,4 @@
-import {Component, Input, NgZone, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MainPageCard} from '../main-page-card';
 import {Router} from '@angular/router';
 
