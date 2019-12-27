@@ -8,6 +8,8 @@ import { MainPageCardBigComponent } from './main-page/main-page-card/main-page-c
 import { MainPageCardSmallComponent } from './main-page/main-page-card/main-page-card-small/main-page-card-small.component';
 import { AddLectureComponent } from './add-lecture/add-lecture.component';
 import {AmplifyAngularModule, AmplifyService} from 'aws-amplify-angular';
+import { LoginComponent } from './login/login.component';
+
 
 @NgModule({
   declarations: [
@@ -16,6 +18,7 @@ import {AmplifyAngularModule, AmplifyService} from 'aws-amplify-angular';
     MainPageCardBigComponent,
     MainPageCardSmallComponent,
     AddLectureComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
