@@ -13,7 +13,9 @@
         },
         "categories": {
             "auth": {
-                "evinnote8d0df436": {}
+                "evinnote8d0df436": {
+                    "hostedUIProviderCreds": "[]"
+                }
             }
         }
     }
