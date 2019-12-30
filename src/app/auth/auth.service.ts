@@ -33,7 +33,7 @@ export class AuthService {
     // this.user$.subscribe(user => console.log(user.lectures.lecture));
   }
 
-  async googleSignin() {
+  async googleSignIn() {
     const provider = new auth.GoogleAuthProvider();
     // let credentialUser: User;
     // await this.afAuth.auth.signInWithRedirect(provider);

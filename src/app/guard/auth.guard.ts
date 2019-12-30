@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
       tap(loggedIn => {
         if (!loggedIn) {
           console.log('You can not access without login');
-          this.auth.googleSignin();
+          this.auth.googleSignIn();
         }
       })
     );

@@ -19,7 +19,7 @@ export class MainPageCardBigComponent implements OnInit {
 
   onClick() {
     if (this.auth.user$ === null) {
-      this.auth.googleSignin();
+      this.auth.googleSignIn();
     }
     this.router.navigate(['/' + this.cardInfo.redirectTo]);
   }
