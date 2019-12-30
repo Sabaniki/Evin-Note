@@ -1,5 +1,6 @@
-<div id="above-cards"></div>
 <div class="container">
+  <app-login></app-login>
+  <div id="above-cards"></div>
   <div class="row">
     <ng-container *ngFor="let mainPageCard of mainPageCards">
       <ng-container *ngIf="isLargeSizeWindow; else smallSizeWindow">

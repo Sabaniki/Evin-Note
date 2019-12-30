@@ -12,6 +12,7 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {firebaseConfig} from '../../FirebaseConfig';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {firebaseConfig} from '../../FirebaseConfig';
     MainPageCardBigComponent,
     MainPageCardSmallComponent,
     AddLectureComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
