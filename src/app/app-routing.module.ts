@@ -2,10 +2,11 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {MainPageComponent} from './main-page/main-page.component';
 import {AddLectureComponent} from './add-lecture/add-lecture.component';
+import {AuthGuard} from './guard/auth.guard';
 
 const routes: Routes = [
   {path: 'main-page', component: MainPageComponent},
-  {path: 'add-lecture', component: AddLectureComponent},
+  {path: 'add-lecture', component: AddLectureComponent, canActivate: [AuthGuard]},
   {path: '', redirectTo: '/main-page', pathMatch: 'prefix'},
 ];
 

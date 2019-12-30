@@ -4,20 +4,38 @@
 
 <!-- User NOT logged in -->
 <ng-template #guest>
-  <h3>ゲストとして使用しています</h3>
-  <p>続けるにはログインしてください…</p>
-
-  <button (click)="auth.googleSignin()" class="btn btn-dark btn-lg m-4">
-    ログイン
-  </button>
+  <div class="container">
+    <div class="card card-body bg-light p-2">
+      <h3>ゲストとして使用しています</h3>
+      <div>
+        続けるにはログインしてください…
+      </div>
+      <div class="row">
+        <div class="col-5"></div>
+        <button (click)="auth.googleSignin()" class="btn btn-dark btn-lg col-2">
+          ログイン
+        </button>
+        <div class="col-5"></div>
+      </div>
+    </div>
+  </div>
 </ng-template>
 
 
 <!-- User logged in -->
 <ng-template #authenticated>
-  <div *ngIf="auth.user$ | async as user">
-    <h3>{{ user.displayName }} としてログインしています</h3>
-    <img  [src]="user.photoURL">
-    <button (click)="auth.signOut()" class="btn btn-dark btn-lg m-4">ログアウト</button>
+  <div *ngIf="auth.user$ | async as user" class="container">
+    <div class="card card-body bg-light p-2">
+      <h3>
+        {{ user.displayName }} としてログインしています
+      </h3>
+      <div class="row">
+        <div class="col-5"></div>
+        <button (click)="auth.signOut()" class="btn btn-dark btn-lg col-2">
+          ログアウト
+        </button>
+        <div class="col-5"></div>
+      </div>
+    </div>
   </div>
 </ng-template>

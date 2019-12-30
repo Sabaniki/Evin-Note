@@ -35,14 +35,14 @@ export class AuthService {
 
   async googleSignin() {
     const provider = new auth.GoogleAuthProvider();
-    let credentialUser: User;
-    await this.afAuth.auth.signInWithRedirect(provider);
-    await this.afAuth.auth.getRedirectResult().then(result => {
-      credentialUser = result.user;
-    });
-    // const credential = await this.afAuth.auth.signInWithRedirect(provider);
+    // let credentialUser: User;
+    // await this.afAuth.auth.signInWithRedirect(provider);
+    // await this.afAuth.auth.getRedirectResult().then(result => {
+    //   credentialUser = result.user;
+    // });
+    const credential = await this.afAuth.auth.signInWithPopup(provider);
     // (credential.user as User).lectures = new Array<Lecture>();
-    return this.updateUserData(credentialUser);
+    return this.updateUserData(credential.user as User);
   }
 
   private updateUserData(user: User) {
