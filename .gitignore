@@ -63,3 +63,6 @@ amplifyxc.config
 # FirebaseConfig
 FirebaseConfig.ts
 
+# memo
+memo.md
+
