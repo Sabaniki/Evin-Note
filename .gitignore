@@ -61,6 +61,5 @@ amplify-gradle-config.json
 amplifyxc.config
 
 # FirebaseConfig
-
 FirebaseConfig.ts
 
