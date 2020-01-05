@@ -1,3 +1,8 @@
 <header class="card-header text-center display-4">自動板書ノート作成システム</header>
-<a href="#" (click)="auth.googleSignIn()" class="display-4">ログイン</a>
+<!--<ng-template *ngIf="![auth.user$ | async]; else loggedIn">-->
+<!--  &lt;!&ndash;  <a href="" (click)="auth.googleSignIn()" class="display-4">ログイン</a>&ndash;&gt;-->
+<!--</ng-template>-->
+<!--<ng-template #loggedIn>-->
+<!--  <a href="" (click)="auth.signOut()" class="display-4">ログアウト</a>-->
+<!--</ng-template>-->
 <router-outlet></router-outlet>
