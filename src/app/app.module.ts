@@ -13,6 +13,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {firebaseConfig} from '../../FirebaseConfig';
 import { LoginComponent } from './login/login.component';
+import { LectureCardComponent } from './add-lecture/lecture-card/lecture-card.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { LoginComponent } from './login/login.component';
     MainPageCardSmallComponent,
     AddLectureComponent,
     LoginComponent,
+    LectureCardComponent,
   ],
   imports: [
     BrowserModule,

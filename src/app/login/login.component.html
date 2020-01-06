@@ -8,16 +8,13 @@
     <div class="card card-body bg-light p-2">
       <h3 class="text-center">現在ログインしていません</h3>
       <div class="row">
-<!--        <div class="col-5"></div>-->
         <button (click)="auth.googleSignIn()" class="btn btn-dark btn-lg" style="margin: auto">
           ログイン
         </button>
-<!--        <div class="col-5"></div>-->
       </div>
     </div>
   </div>
 </ng-template>
-
 
 <!-- User logged in -->
 <ng-template #authenticated>
@@ -27,11 +24,9 @@
         {{ user.displayName }} としてログインしています
       </h3>
       <div class="row">
-<!--        <div class="col-5"></div>-->
         <button (click)="auth.signOut()" class="btn btn-dark btn-lg" style="margin: auto">
           ログアウト
         </button>
-<!--        <div class="col-5"></div>-->
       </div>
     </div>
   </div>
