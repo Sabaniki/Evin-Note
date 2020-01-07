@@ -1,6 +1,7 @@
 import {Component, Input, NgZone, OnInit} from '@angular/core';
 import {MainPageCard} from './main-page-card/main-page-card';
 import {Router} from '@angular/router';
+import {MonitorScreenSizeService} from '../monitor-screen-size/monitor-screen-size.service';
 
 @Component({
   selector: 'app-main-page',
@@ -30,19 +31,9 @@ export class MainPageComponent implements OnInit {
   ];
   isLargeSizeWindow = true;
   @Input() cardInfo: MainPageCard;
-  constructor(private router: Router, private ngZone: NgZone) {
-    window.onresize = () => {
-      ngZone.run(() => {
-        this.handleResizeWindow(window.innerWidth);
-      });
-    };
+  constructor(private router: Router, private monitorScreenSizeService: MonitorScreenSizeService) {
   }
 
   ngOnInit() {
-    this.handleResizeWindow(window.innerWidth);
-  }
-
-  private handleResizeWindow(width: number) {
-    this.isLargeSizeWindow = 768 < width;
   }
 }
