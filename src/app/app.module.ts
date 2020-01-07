@@ -13,7 +13,8 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {firebaseConfig} from '../../FirebaseConfig';
 import { LoginComponent } from './login/login.component';
-import { LectureCardComponent } from './add-lecture/lecture-card/lecture-card.component';
+import { LectureCardBigComponent } from './add-lecture/add-lecture-card/lecture-card-big/lecture-card-big.component';
+import { LectureCardSmallComponent } from './add-lecture/add-lecture-card/lecture-card-small/lecture-card-small.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { LectureCardComponent } from './add-lecture/lecture-card/lecture-card.co
     MainPageCardSmallComponent,
     AddLectureComponent,
     LoginComponent,
-    LectureCardComponent,
+    LectureCardBigComponent,
+    LectureCardSmallComponent,
   ],
   imports: [
     BrowserModule,

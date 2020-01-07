@@ -1,4 +1,4 @@
-import {Lecture} from '../add-lecture/lecture';
+import {Lecture} from '../add-lecture/add-lecture-card/lecture';
 
 export class User {
   uid: string;

@@ -8,7 +8,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { Lecture } from '../add-lecture/lecture';
+import { Lecture } from '../add-lecture/add-lecture-card/lecture';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
