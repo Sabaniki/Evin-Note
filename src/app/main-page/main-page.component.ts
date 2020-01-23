@@ -2,6 +2,7 @@ import {Component, Input, NgZone, OnInit} from '@angular/core';
 import {MainPageCard} from './main-page-card/main-page-card';
 import {Router} from '@angular/router';
 import {MonitorScreenSizeService} from '../monitor-screen-size/monitor-screen-size.service';
+import {AuthService} from '../auth/auth.service';
 
 @Component({
   selector: 'app-main-page',
@@ -14,24 +15,39 @@ export class MainPageComponent implements OnInit {
       'ノートを閲覧',
       '　自動で作成されたノートを閲覧することができます',
       'ノートのアイコン素材.svg',
-      'browse-notes'
+      () => {
+        if (this.auth.user$ === null) {
+          this.auth.googleSignIn();
+        }
+        this.router.navigate(['/read-note']);
+      }
     ),
     new MainPageCard(
       '授業を追加',
       '　受講している授業をマイリストに登録する事ができます',
       '授業のフリー素材.svg',
-      'add-lecture'
+      () => {
+        if (this.auth.user$ === null) {
+          this.auth.googleSignIn();
+        }
+        this.router.navigate(['/add-lecture']);
+      }
     ),
     new MainPageCard(
       '映像をアップロード',
       '授業を録画した映像をアップロードすることができます',
       'クラウドのアップロードアイコン.svg',
-      'upload-movie'
-    ),
+      () => {
+        if (this.auth.user$ === null) {
+          this.auth.googleSignIn();
+        }
+        this.router.navigate(['/upload-movie']);
+      }
+    )
   ];
   @Input() cardInfo: MainPageCard;
 
-  constructor(private router: Router, private monitorScreenSizeService: MonitorScreenSizeService) {
+  constructor(private router: Router, private monitorScreenSizeService: MonitorScreenSizeService, private auth: AuthService) {
   }
 
   ngOnInit() {

@@ -17,18 +17,5 @@ export class MainPageCardBigComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  onClick() {
-    this.auth.user$.subscribe(user => {
-      if (!user) {
-        swal({
-          text: 'ログインする必要があります',
-          icon: 'error',
-        });
-      } else {
-        this.router.navigate(['/' + this.cardInfo.redirectTo]);
-      }
-    });
-  }
 }
 
