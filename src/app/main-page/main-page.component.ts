@@ -29,8 +29,8 @@ export class MainPageComponent implements OnInit {
       'upload-movie'
     ),
   ];
-  isLargeSizeWindow = true;
   @Input() cardInfo: MainPageCard;
+
   constructor(private router: Router, private monitorScreenSizeService: MonitorScreenSizeService) {
   }
 
