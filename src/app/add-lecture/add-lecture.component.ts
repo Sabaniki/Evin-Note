@@ -12,45 +12,8 @@ import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firest
   styleUrls: ['./add-lecture.component.scss']
 })
 export class AddLectureComponent implements OnInit {
-  lectureRef: AngularFirestoreCollection<Array<string>>;
-  lectureCards: Array<Lecture> = [
-    new Lecture(
-      '数学アイコン.svg',
-      '類型数学（多胡）',
-      '多胡先生の類型数学の授業です。○曜日の✗, △時間',
-      this.onClickSaveButton
-    ),
-    new Lecture(
-      '物理アイコン.svg',
-      '類型物理（小佐野）',
-      '小佐野先生の類型物理の授業です。○曜日の✗, △時間',
-      this.onClickSaveButton
-    ),
-    new Lecture(
-      'はてなマークのアイコン.svg',
-      '？？？？？？？？？？',
-      '？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？',
-      this.onClickSaveButton
-    ),
-    new Lecture(
-      'はてなマークのアイコン.svg',
-      '？？？？？？？？？？',
-      '？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？',
-      this.onClickSaveButton
-    ),
-    new Lecture(
-      'はてなマークのアイコン.svg',
-      '？？？？？？？？？？',
-      '？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？',
-      this.onClickSaveButton
-    ),
-    new Lecture(
-      'はてなマークのアイコン.svg',
-      '？？？？？？？？？？',
-      '？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？',
-      this.onClickSaveButton
-    )
-  ];
+  lectureRef: AngularFirestoreCollection<Array<Lecture>>;
+  lectureCards: Array<Lecture>;
 
   constructor(private router: Router,
               private monitorScreenSizeService: MonitorScreenSizeService,
@@ -60,6 +23,44 @@ export class AddLectureComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.lectureCards = [
+      new Lecture(
+        '数学アイコン.svg',
+        '類型数学（多胡）',
+        '多胡先生の類型数学の授業です。○曜日の✗, △時間',
+        this.onClickSaveButton()
+      ),
+      new Lecture(
+        '物理アイコン.svg',
+        '類型物理（小佐野）',
+        '小佐野先生の類型物理の授業です。○曜日の✗, △時間',
+        this.onClickSaveButton()
+      ),
+      new Lecture(
+        'はてなマークのアイコン.svg',
+        '？？？？？？？？？？',
+        '？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？',
+        this.onClickSaveButton()
+      ),
+      new Lecture(
+        'はてなマークのアイコン.svg',
+        '？？？？？？？？？？',
+        '？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？',
+        this.onClickSaveButton()
+      ),
+      new Lecture(
+        'はてなマークのアイコン.svg',
+        '？？？？？？？？？？',
+        '？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？',
+        this.onClickSaveButton()
+      ),
+      new Lecture(
+        'はてなマークのアイコン.svg',
+        '？？？？？？？？？？',
+        '？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？',
+        this.onClickSaveButton()
+      )
+    ];
     this.auth.user$.subscribe(user => {
       if (!!user) {
         console.log('ngOnInit');
@@ -74,8 +75,10 @@ export class AddLectureComponent implements OnInit {
     }).unsubscribe();
   }
 
-  onClickSaveButton(i: number) {
+  onClickSaveButton = () => (i: number) => {
     console.log('onClickSaveButton, this.lectureRef = ' + this.lectureRef);
+    console.log('onClickSaveButton, this.lectureCards = ' + this.lectureCards);
+    console.log('target card info = ' + JSON.stringify(this.lectureCards[i]));
     this.lectureRef.doc('lectures').set(Object.assign({}, this.lectureCards[i])).then(() => {
         swal({
           text: '講義を登録しました！',

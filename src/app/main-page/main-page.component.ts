@@ -38,8 +38,8 @@ export class MainPageComponent implements OnInit {
   ngOnInit() {
   }
 
-  redirectPage(path: string): (str: string) => void {
-    return (str: string) => {
+  redirectPage(path: string): () => void {
+    return () => {
       if (this.auth.user$ === null) {
         this.auth.googleSignIn();
       }
