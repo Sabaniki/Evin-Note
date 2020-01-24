@@ -2,7 +2,6 @@ import {Component, Input, OnInit} from '@angular/core';
 import {MainPageCard} from '../main-page-card';
 import {Router} from '@angular/router';
 import {AuthService} from '../../../auth/auth.service';
-import swal from 'sweetalert';
 
 @Component({
   selector: 'app-main-page-card-big',

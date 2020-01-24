@@ -15,34 +15,19 @@ export class MainPageComponent implements OnInit {
       'ノートを閲覧',
       '　自動で作成されたノートを閲覧することができます',
       'ノートのアイコン素材.svg',
-      () => {
-        if (this.auth.user$ === null) {
-          this.auth.googleSignIn();
-        }
-        this.router.navigate(['/read-note']);
-      }
+      this.redirectPage('/read-note'),
     ),
     new MainPageCard(
       '授業を追加',
       '　受講している授業をマイリストに登録する事ができます',
       '授業のフリー素材.svg',
-      () => {
-        if (this.auth.user$ === null) {
-          this.auth.googleSignIn();
-        }
-        this.router.navigate(['/add-lecture']);
-      }
+      this.redirectPage('/add-lecture')
     ),
     new MainPageCard(
       '映像をアップロード',
       '授業を録画した映像をアップロードすることができます',
       'クラウドのアップロードアイコン.svg',
-      () => {
-        if (this.auth.user$ === null) {
-          this.auth.googleSignIn();
-        }
-        this.router.navigate(['/upload-movie']);
-      }
+      this.redirectPage('/upload-movie')
     )
   ];
   @Input() cardInfo: MainPageCard;
@@ -51,5 +36,14 @@ export class MainPageComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  redirectPage(path: string): (str: string) => void {
+    return (str: string) => {
+      if (this.auth.user$ === null) {
+        this.auth.googleSignIn();
+      }
+      this.router.navigate([path]);
+    };
   }
 }

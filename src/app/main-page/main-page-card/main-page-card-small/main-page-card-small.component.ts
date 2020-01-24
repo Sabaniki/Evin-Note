@@ -16,11 +16,4 @@ export class MainPageCardSmallComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  onClick() {
-    if (this.auth.user$ === null) {
-      this.auth.googleSignIn();
-    }
-    this.router.navigate(['/' + this.cardInfo.onClick]);
-  }
 }
