@@ -12,7 +12,7 @@ import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firest
   styleUrls: ['./add-lecture.component.scss']
 })
 export class AddLectureComponent implements OnInit {
-  lectureRef: AngularFirestoreCollection<Array<Lecture>>;
+  lectureRef: AngularFirestoreCollection<Array<string>>;
   lectureCards: Array<Lecture> = [
     new Lecture(
       '数学アイコン.svg',
@@ -74,22 +74,19 @@ export class AddLectureComponent implements OnInit {
     }).unsubscribe();
   }
 
-  onClickSaveButton(lectureName: string) {
+  onClickSaveButton(i: number) {
     console.log('onClickSaveButton, this.lectureRef = ' + this.lectureRef);
-    /*this.lectureRef.doc('lectures') */
-    this.auth.user$.subscribe(user => {
-      this.afs.doc(`users/${user.uid}`).collection('lectures').doc('lectures').set(Object.assign({}, lectureName)).then(() => {
-          swal({
-            text: '講義を登録しました！',
-            icon: 'success',
-          });
-        },
-        reason => {
-          swal({
-            text: 'エラーが発生しました！' + reason.toString(),
-            icon: 'error',
-          });
+    this.lectureRef.doc('lectures').set(Object.assign({}, this.lectureCards[i])).then(() => {
+        swal({
+          text: '講義を登録しました！',
+          icon: 'success',
         });
-    });
+      },
+      reason => {
+        swal({
+          text: 'エラーが発生しました！' + reason.toString(),
+          icon: 'error',
+        });
+      });
   }
 }

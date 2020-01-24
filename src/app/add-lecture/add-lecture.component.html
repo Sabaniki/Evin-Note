@@ -2,12 +2,12 @@
   <app-login class="col-12"></app-login>
   <!--  <div id="above-cards"></div>-->
   <div class="row">
-    <ng-container *ngFor="let mainPageCard of lectureCards">
+    <ng-container *ngFor="let lectureCard of lectureCards; index as i">
       <ng-container *ngIf="monitorScreenSizeService.isLargeSizeWindow; else smallSizeWindow">
-        <app-main-page-card-big class="card col-md-3" [cardInfo]="mainPageCard"></app-main-page-card-big>
+        <app-lecture-card-big class="card col-md-3" [cardInfo]="lectureCard" [i]="i"></app-lecture-card-big>
       </ng-container>
       <ng-template #smallSizeWindow>
-        <app-main-page-card-small class="card col-md-6" [cardInfo]="mainPageCard"></app-main-page-card-small>
+        <app-lecture-card-small class="card col-md-6" [cardInfo]="lectureCard" [i]="i"></app-lecture-card-small>
       </ng-template>
     </ng-container>
   </div>

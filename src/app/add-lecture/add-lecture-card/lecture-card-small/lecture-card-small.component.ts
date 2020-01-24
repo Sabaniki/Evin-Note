@@ -1,8 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Lecture} from '../lecture';
-import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
-import {AuthService} from '../../../auth/auth.service';
-import swal from 'sweetalert';
 
 @Component({
   selector: 'app-lecture-card-small',
@@ -11,6 +8,7 @@ import swal from 'sweetalert';
 })
 export class LectureCardSmallComponent implements OnInit {
   @Input() cardInfo: Lecture;
+  @Input() i: number;
 
   constructor() {
   }

@@ -8,13 +8,11 @@ import {Lecture} from '../lecture';
 })
 export class LectureCardBigComponent implements OnInit {
   @Input() cardInfo: Lecture;
+  @Input() i: number;
+
   constructor() {
   }
 
   ngOnInit() {
   }
-
-  onClick() {
-  }
-
 }
