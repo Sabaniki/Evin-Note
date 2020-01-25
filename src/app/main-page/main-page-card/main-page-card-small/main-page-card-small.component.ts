@@ -11,7 +11,7 @@ import {AuthService} from '../../../auth/auth.service';
 export class MainPageCardSmallComponent implements OnInit {
   @Input() cardInfo: MainPageCard;
 
-  constructor(private router: Router, public auth: AuthService) {
+  constructor(private router: Router) {
   }
 
   ngOnInit() {

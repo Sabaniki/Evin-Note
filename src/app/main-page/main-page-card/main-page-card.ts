@@ -3,7 +3,7 @@ export class MainPageCard {
     public title: string,
     public explanatoryText: string,
     public imgName: string,
-    public onClick: (path: string) => void
+    public onClick: () => void
   ) {
   }
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Lecture} from './add-lecture-card/lecture';
 import {Router} from '@angular/router';
 import {MonitorScreenSizeService} from '../monitor-screen-size/monitor-screen-size.service';
@@ -61,8 +61,8 @@ export class AddLectureComponent implements OnInit {
 
   ngOnInit() {
     this.auth.user$.subscribe(user => {
+      console.log(user);
       if (!!user) {
-        console.log('ngOnInit');
         this.lectureRef = this.afs.doc(`users/${user.uid}`).collection('lectures');
         console.log('ngOnInit::this.lectureRef = ' + this.lectureRef);
       } else {
@@ -71,7 +71,7 @@ export class AddLectureComponent implements OnInit {
           icon: 'error'
         });
       }
-    }).unsubscribe();
+    });
   }
 
   onClickSaveButton(i: number) {
