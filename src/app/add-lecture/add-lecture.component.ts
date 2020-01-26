@@ -108,12 +108,6 @@ export class AddLectureComponent implements OnInit {
                 icon: 'error',
               });
             });
-        console.log('ngOnInit::this.lectureRef = ' + this.lectureRef);
-      } else {
-        swal({
-          text: 'エラーが発生しました',
-          icon: 'error'
-        });
       }
     });
   }
