@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Lecture} from './add-lecture-card/lecture';
 import {Router} from '@angular/router';
 import {MonitorScreenSizeService} from '../monitor-screen-size/monitor-screen-size.service';
@@ -17,38 +17,56 @@ export class AddLectureComponent implements OnInit {
     new Lecture(
       '数学アイコン.svg',
       '類型数学（多胡）',
+      '多胡',
       '多胡先生の類型数学の授業です。○曜日の✗, △時間',
-      this.onClickSaveButton
+      this.onClickSaveButton,
+      this.auth,
+      this.afs
     ),
     new Lecture(
       '物理アイコン.svg',
       '類型物理（小佐野）',
+      '小佐野',
       '小佐野先生の類型物理の授業です。○曜日の✗, △時間',
-      this.onClickSaveButton
+      this.onClickSaveButton,
+      this.auth,
+      this.afs
     ),
     new Lecture(
       'はてなマークのアイコン.svg',
       '？？？？？？？？？？',
+      '？？？？',
       '？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？',
-      this.onClickSaveButton
+      this.onClickSaveButton,
+      this.auth,
+      this.afs
     ),
     new Lecture(
       'はてなマークのアイコン.svg',
       '？？？？？？？？？？',
+      '？？？？',
       '？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？',
-      this.onClickSaveButton
+      this.onClickSaveButton,
+      this.auth,
+      this.afs
     ),
     new Lecture(
       'はてなマークのアイコン.svg',
       '？？？？？？？？？？',
+      '？？？？',
       '？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？',
-      this.onClickSaveButton
+      this.onClickSaveButton,
+      this.auth,
+      this.afs
     ),
     new Lecture(
       'はてなマークのアイコン.svg',
       '？？？？？？？？？？',
+      '？？？？',
       '？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？',
-      this.onClickSaveButton
+      this.onClickSaveButton,
+      this.auth,
+      this.afs
     )
   ];
 
@@ -60,10 +78,36 @@ export class AddLectureComponent implements OnInit {
   }
 
   ngOnInit() {
+    // for-ofでやると参照的なアレで変更ができない気が下から抑制
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < this.lectureCards.length; i++) {
+      this.lectureCards[i].lectureCards = this.lectureCards;
+    }
+  }
+
+  onClickSaveButton(i: number) {
+    console.log(this.auth);
     this.auth.user$.subscribe(user => {
+      console.log(user);
       if (!!user) {
-        console.log('ngOnInit');
-        this.lectureRef = this.afs.doc(`users/${user.uid}`).collection('lectures');
+        this.afs.doc(`users/${user.uid}`).collection('lectures')
+          .doc(this.lectureCards[i].title)
+          .set(Object.assign({}, {
+            title: this.lectureCards[i].title,
+            teacherName: this.lectureCards[i].teacherName
+          }))
+          .then(() => {
+              swal({
+                text: '講義を登録しました！',
+                icon: 'success',
+              });
+            },
+            reason => {
+              swal({
+                text: 'エラーが発生しました！' + reason.toString(),
+                icon: 'error',
+              });
+            });
         console.log('ngOnInit::this.lectureRef = ' + this.lectureRef);
       } else {
         swal({
@@ -71,22 +115,6 @@ export class AddLectureComponent implements OnInit {
           icon: 'error'
         });
       }
-    }).unsubscribe();
-  }
-
-  onClickSaveButton(i: number) {
-    console.log('onClickSaveButton, this.lectureRef = ' + this.lectureRef);
-    this.lectureRef.doc('lectures').set(Object.assign({}, this.lectureCards[i])).then(() => {
-        swal({
-          text: '講義を登録しました！',
-          icon: 'success',
-        });
-      },
-      reason => {
-        swal({
-          text: 'エラーが発生しました！' + reason.toString(),
-          icon: 'error',
-        });
-      });
+    });
   }
 }
