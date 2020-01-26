@@ -38,16 +38,12 @@ export class MainPageComponent implements OnInit {
   ngOnInit() {
   }
 
-  redirectPage(path: string): () => void {
-    return () => {
-      console.log('redirect to ' + path);
+  redirectPage(path: string): (str: string) => void {
+    return (str: string) => {
       if (this.auth.user$ === null) {
-        console.log('not logged in');
         this.auth.googleSignIn();
-      } else {
-        this.auth.user$.subscribe(user => console.log(user));
-        this.router.navigate([path]);
       }
+      this.router.navigate([path]);
     };
   }
 }
