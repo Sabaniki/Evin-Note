@@ -12,7 +12,6 @@ import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firest
   styleUrls: ['./add-lecture.component.scss']
 })
 export class AddLectureComponent implements OnInit {
-  lectureRef: AngularFirestoreCollection<Array<string>>;
   lectureCards: Array<Lecture> = [
     new Lecture(
       '数学アイコン.svg',
@@ -78,15 +77,22 @@ export class AddLectureComponent implements OnInit {
   }
 
   ngOnInit() {
-    // for-ofでやると参照的なアレで変更ができない気が下から抑制
-    // tslint:disable-next-line:prefer-for-of
-    for (let i = 0; i < this.lectureCards.length; i++) {
-      this.lectureCards[i].lectureCards = this.lectureCards;
-    }
+    this.auth.user$.subscribe(user => {
+      // for-ofでやると参照的なアレで変更ができない気が下から抑制
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < this.lectureCards.length; i++) {
+        this.lectureCards[i].lectureCards = this.lectureCards;
+        this.afs.doc(`users/${user.uid}`)
+          .collection('lectures')
+          .doc(this.lectureCards[i].title).get()
+          .subscribe(
+            doc => this.lectureCards[i].isRegistered = (this.lectureCards[i].title === (doc.data() as Lecture).title)
+          );
+      }
+    });
   }
 
   onClickSaveButton(i: number) {
-    console.log(this.auth);
     this.auth.user$.subscribe(user => {
       console.log(user);
       if (!!user) {
@@ -101,6 +107,7 @@ export class AddLectureComponent implements OnInit {
                 text: '講義を登録しました！',
                 icon: 'success',
               });
+              this.lectureCards[i].isRegistered = true;
             },
             reason => {
               swal({

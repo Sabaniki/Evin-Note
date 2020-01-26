@@ -14,5 +14,6 @@ export class Lecture {
   ) {
   }
   lectureCards: Array<Lecture>;
+  isRegistered: boolean;
   lastUpdate: string;
 }

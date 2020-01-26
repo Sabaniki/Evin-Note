@@ -4,10 +4,10 @@
   <div class="row">
     <ng-container *ngFor="let lectureCard of lectureCards; index as i">
       <ng-container *ngIf="monitorScreenSizeService.isLargeSizeWindow; else smallSizeWindow">
-        <app-lecture-card-big class="card col-md-3" [cardInfo]="lectureCard" [i]="i"></app-lecture-card-big>
+        <app-lecture-card-big class="card col-md-3" [cardInfo]="lectureCard" [i]="i" [hidden]="lectureCard.isRegistered"></app-lecture-card-big>
       </ng-container>
       <ng-template #smallSizeWindow>
-        <app-lecture-card-small class="card col-md-6" [cardInfo]="lectureCard" [i]="i"></app-lecture-card-small>
+        <app-lecture-card-small class="card col-md-6" [cardInfo]="lectureCard" [i]="i" [hidden]="lectureCard.isRegistered"></app-lecture-card-small>
       </ng-template>
     </ng-container>
   </div>
