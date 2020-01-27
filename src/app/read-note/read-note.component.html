@@ -1,0 +1,11 @@
+<h1>ノート</h1>
+
+<ng-container #contetlist *ngFor="let url of contentPathService.contentPaths; let i=index">
+  <ng-container *ngIf="checkPng(url); else elseTemplate">
+    <img [src]=url alt="" width="80%" class="mx-auto d-block">
+  </ng-container>
+  <ng-template #elseTemplate>
+    <a [href]=url target="_blank" class="btn btn-lg btn-dark mb-4" download="note.pdf">　ノートを保存する　</a>
+  </ng-template>
+</ng-container>
+
