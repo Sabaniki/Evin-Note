@@ -1,6 +1,7 @@
 import {MainPageCard} from '../../main-page/main-page-card/main-page-card';
 import {AuthService} from '../../auth/auth.service';
 import {AngularFirestore} from '@angular/fire/firestore';
+import {AngularFireStorage} from '@angular/fire/storage';
 
 export class Lecture {
   constructor(
@@ -10,9 +11,11 @@ export class Lecture {
     public explanatoryText: string,
     public onClick: (i: number) => void,
     public auth: AuthService,
-    public afs: AngularFirestore,
+    public angularFirestore: AngularFirestore,
+    public angularFireStorage: AngularFireStorage
   ) {
   }
+  contentPaths: Array<string>;
   lectureCards: Array<Lecture>;
   isRegistered: boolean;
 }

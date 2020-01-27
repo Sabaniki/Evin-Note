@@ -12,10 +12,11 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {firebaseConfig} from '../../FirebaseConfig';
-import { LoginComponent } from './login/login.component';
-import { LectureCardBigComponent } from './add-lecture/add-lecture-card/lecture-card-big/lecture-card-big.component';
-import { LectureCardSmallComponent } from './add-lecture/add-lecture-card/lecture-card-small/lecture-card-small.component';
-import { ReadNoteComponent } from './read-note/read-note.component';
+import {LoginComponent} from './login/login.component';
+import {LectureCardBigComponent} from './add-lecture/add-lecture-card/lecture-card-big/lecture-card-big.component';
+import {LectureCardSmallComponent} from './add-lecture/add-lecture-card/lecture-card-small/lecture-card-small.component';
+import {ReadNoteComponent} from './read-note/read-note.component';
+import {AngularFireStorage, AngularFireStorageModule} from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ReadNoteComponent } from './read-note/read-note.component';
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

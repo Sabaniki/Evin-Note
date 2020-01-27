@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Lecture} from '../add-lecture/add-lecture-card/lecture';
 import {Router} from '@angular/router';
 import {MonitorScreenSizeService} from '../monitor-screen-size/monitor-screen-size.service';
 import {AuthService} from '../auth/auth.service';
 import {AngularFirestore} from '@angular/fire/firestore';
 import swal from 'sweetalert';
+import {AngularFireStorage} from '@angular/fire/storage';
 
 @Component({
   selector: 'app-read-note',
@@ -20,7 +21,8 @@ export class ReadNoteComponent implements OnInit {
       '○曜日✗, △時間目の多胡先生の類型数学の授業です。',
       this.onClickRedirectNoteButton,
       this.auth,
-      this.afs
+      this.angularFirestore,
+      this.angularFireStorage
     ),
     new Lecture(
       '物理アイコン.svg',
@@ -29,7 +31,8 @@ export class ReadNoteComponent implements OnInit {
       '○曜日✗, △時間の小佐野先生の類型物理の授業です。',
       this.onClickRedirectNoteButton,
       this.auth,
-      this.afs
+      this.angularFirestore,
+      this.angularFireStorage
     ),
     new Lecture(
       'はてなマークのアイコン.svg',
@@ -38,7 +41,8 @@ export class ReadNoteComponent implements OnInit {
       '？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？',
       this.onClickRedirectNoteButton,
       this.auth,
-      this.afs
+      this.angularFirestore,
+      this.angularFireStorage
     ),
     new Lecture(
       'はてなマークのアイコン.svg',
@@ -47,7 +51,8 @@ export class ReadNoteComponent implements OnInit {
       '？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？',
       this.onClickRedirectNoteButton,
       this.auth,
-      this.afs
+      this.angularFirestore,
+      this.angularFireStorage
     ),
     new Lecture(
       'はてなマークのアイコン.svg',
@@ -56,7 +61,8 @@ export class ReadNoteComponent implements OnInit {
       '？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？',
       this.onClickRedirectNoteButton,
       this.auth,
-      this.afs
+      this.angularFirestore,
+      this.angularFireStorage
     ),
     new Lecture(
       'はてなマークのアイコン.svg',
@@ -65,14 +71,17 @@ export class ReadNoteComponent implements OnInit {
       '？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？',
       this.onClickRedirectNoteButton,
       this.auth,
-      this.afs
+      this.angularFirestore,
+      this.angularFireStorage
     )
   ];
+  contentPaths = new Array<string>();
 
   constructor(private router: Router,
               public monitorScreenSizeService: MonitorScreenSizeService,
               private auth: AuthService,
-              private afs: AngularFirestore
+              private angularFirestore: AngularFirestore,
+              private angularFireStorage: AngularFireStorage
   ) {
   }
 
@@ -82,7 +91,8 @@ export class ReadNoteComponent implements OnInit {
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < this.lectureCards.length; i++) {
         this.lectureCards[i].lectureCards = this.lectureCards;
-        this.afs.doc(`users/${user.uid}`)
+        this.lectureCards[i].contentPaths = this.contentPaths;
+        this.angularFirestore.doc(`users/${user.uid}`)
           .collection('lectures')
           .doc(this.lectureCards[i].title).get()
           .subscribe(
@@ -94,29 +104,40 @@ export class ReadNoteComponent implements OnInit {
 
   onClickRedirectNoteButton(i: number) {
     this.auth.user$.subscribe(user => {
+      let contentPath: string;
       console.log(user);
       if (!!user) {
-        this.afs.doc(`users/${user.uid}`).collection('lectures')
-          .doc(this.lectureCards[i].title)
-          .set(Object.assign({}, {
-            title: this.lectureCards[i].title,
-            teacherName: this.lectureCards[i].teacherName,
-            explanatoryText: this.lectureCards[i].explanatoryText
-          }))
-          .then(() => {
-              swal({
-                text: '講義を登録しました！',
-                icon: 'success',
-              });
-              this.lectureCards[i].isRegistered = true;
-            },
-            reason => {
-              swal({
-                text: 'エラーが発生しました！' + reason.toString(),
-                icon: 'error',
-              });
-            }
-          );
+        contentPath = this.lectureCards[i].title;
+        console.log(contentPath);
+        this.angularFireStorage.storage.ref(contentPath).listAll().then(value => {
+          value.items.forEach(item => {
+            item.getDownloadURL().then((path: string) => {
+              this.contentPaths.push(path);
+            });
+          });
+        });
+        console.log(this.contentPaths);
+        // this.angularFirestore.doc(`users/${user.uid}`).collection('lectures')
+        //   .doc(this.lectureCards[i].title)
+        //   .set(Object.assign({}, {
+        //     title: this.lectureCards[i].title,
+        //     teacherName: this.lectureCards[i].teacherName,
+        //     explanatoryText: this.lectureCards[i].explanatoryText
+        //   }))
+        //   .then(() => {
+        //       swal({
+        //         text: '講義を登録しました！',
+        //         icon: 'success',
+        //       });
+        //       this.lectureCards[i].isRegistered = true;
+        //     },
+        //     reason => {
+        //       swal({
+        //         text: 'エラーが発生しました！' + reason.toString(),
+        //         icon: 'error',
+        //       });
+        //     }
+        //   );
       }
     });
   }

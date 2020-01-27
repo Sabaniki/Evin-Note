@@ -5,6 +5,7 @@ import {MonitorScreenSizeService} from '../monitor-screen-size/monitor-screen-si
 import {AuthService} from '../auth/auth.service';
 import swal from 'sweetalert';
 import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
+import {AngularFireStorage} from '@angular/fire/storage';
 
 @Component({
   selector: 'app-add-lecture',
@@ -20,7 +21,8 @@ export class AddLectureComponent implements OnInit {
       '○曜日✗, △時間目の多胡先生の類型数学の授業です。',
       this.onClickSaveButton,
       this.auth,
-      this.afs
+      this.angularFirestore,
+      this.angularFireStorage
     ),
     new Lecture(
       '物理アイコン.svg',
@@ -29,7 +31,8 @@ export class AddLectureComponent implements OnInit {
       '○曜日✗, △時間の小佐野先生の類型物理の授業です。',
       this.onClickSaveButton,
       this.auth,
-      this.afs
+      this.angularFirestore,
+      this.angularFireStorage
     ),
     new Lecture(
       'はてなマークのアイコン.svg',
@@ -38,7 +41,8 @@ export class AddLectureComponent implements OnInit {
       '？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？',
       this.onClickSaveButton,
       this.auth,
-      this.afs
+      this.angularFirestore,
+      this.angularFireStorage
     ),
     new Lecture(
       'はてなマークのアイコン.svg',
@@ -47,7 +51,8 @@ export class AddLectureComponent implements OnInit {
       '？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？',
       this.onClickSaveButton,
       this.auth,
-      this.afs
+      this.angularFirestore,
+      this.angularFireStorage
     ),
     new Lecture(
       'はてなマークのアイコン.svg',
@@ -56,7 +61,8 @@ export class AddLectureComponent implements OnInit {
       '？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？',
       this.onClickSaveButton,
       this.auth,
-      this.afs
+      this.angularFirestore,
+      this.angularFireStorage
     ),
     new Lecture(
       'はてなマークのアイコン.svg',
@@ -65,14 +71,16 @@ export class AddLectureComponent implements OnInit {
       '？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？',
       this.onClickSaveButton,
       this.auth,
-      this.afs
+      this.angularFirestore,
+      this.angularFireStorage
     )
   ];
 
   constructor(private router: Router,
               public monitorScreenSizeService: MonitorScreenSizeService,
               private auth: AuthService,
-              private afs: AngularFirestore
+              private angularFirestore: AngularFirestore,
+              private angularFireStorage: AngularFireStorage
   ) {
   }
 
@@ -82,7 +90,7 @@ export class AddLectureComponent implements OnInit {
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < this.lectureCards.length; i++) {
         this.lectureCards[i].lectureCards = this.lectureCards;
-        this.afs.doc(`users/${user.uid}`)
+        this.angularFirestore.doc(`users/${user.uid}`)
           .collection('lectures')
           .doc(this.lectureCards[i].title).get()
           .subscribe(
@@ -96,7 +104,7 @@ export class AddLectureComponent implements OnInit {
     this.auth.user$.subscribe(user => {
       console.log(user);
       if (!!user) {
-        this.afs.doc(`users/${user.uid}`).collection('lectures')
+        this.angularFirestore.doc(`users/${user.uid}`).collection('lectures')
           .doc(this.lectureCards[i].title)
           .set(Object.assign({}, {
             title: this.lectureCards[i].title,
