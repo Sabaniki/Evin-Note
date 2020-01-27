@@ -6,13 +6,14 @@ import {AuthService} from '../auth/auth.service';
 import {AngularFirestore} from '@angular/fire/firestore';
 import swal from 'sweetalert';
 import {AngularFireStorage} from '@angular/fire/storage';
+import {ContentPathService} from '../content-path/content-path.service';
 
 @Component({
   selector: 'app-read-note',
-  templateUrl: './read-note.component.html',
-  styleUrls: ['./read-note.component.scss']
+  templateUrl: './browse-note.component.html',
+  styleUrls: ['./browse-note.component.scss']
 })
-export class ReadNoteComponent implements OnInit {
+export class BrowseNoteComponent implements OnInit {
   lectureCards: Array<Lecture> = [
     new Lecture(
       '数学アイコン.svg',
@@ -75,13 +76,13 @@ export class ReadNoteComponent implements OnInit {
       this.angularFireStorage
     )
   ];
-  contentPaths = new Array<string>();
 
   constructor(private router: Router,
               public monitorScreenSizeService: MonitorScreenSizeService,
               private auth: AuthService,
               private angularFirestore: AngularFirestore,
-              private angularFireStorage: AngularFireStorage
+              private angularFireStorage: AngularFireStorage,
+              private contentPathService: ContentPathService
   ) {
   }
 
@@ -91,7 +92,9 @@ export class ReadNoteComponent implements OnInit {
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < this.lectureCards.length; i++) {
         this.lectureCards[i].lectureCards = this.lectureCards;
-        this.lectureCards[i].contentPaths = this.contentPaths;
+        this.lectureCards[i].contentPathService = this.contentPathService;
+        this.lectureCards[i].contentPathService.contentPaths = this.contentPathService.contentPaths;
+        this.lectureCards[i].router = this.router;
         this.angularFirestore.doc(`users/${user.uid}`)
           .collection('lectures')
           .doc(this.lectureCards[i].title).get()
@@ -112,11 +115,12 @@ export class ReadNoteComponent implements OnInit {
         this.angularFireStorage.storage.ref(contentPath).listAll().then(value => {
           value.items.forEach(item => {
             item.getDownloadURL().then((path: string) => {
-              this.contentPaths.push(path);
+              this.contentPathService.contentPaths.push(path);
             });
           });
         });
-        console.log(this.contentPaths);
+        console.log(this.contentPathService.contentPaths);
+        this.router.navigate(['read-note']);
         // this.angularFirestore.doc(`users/${user.uid}`).collection('lectures')
         //   .doc(this.lectureCards[i].title)
         //   .set(Object.assign({}, {

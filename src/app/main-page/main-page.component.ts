@@ -15,7 +15,7 @@ export class MainPageComponent implements OnInit {
       'ノートを閲覧',
       '　自動で作成されたノートを閲覧することができます',
       'ノートのアイコン素材.svg',
-      this.redirectPage('/read-note'),
+      this.redirectPage('/browse-note'),
     ),
     new MainPageCard(
       '授業を追加',

@@ -15,8 +15,9 @@ import {firebaseConfig} from '../../FirebaseConfig';
 import {LoginComponent} from './login/login.component';
 import {LectureCardBigComponent} from './add-lecture/add-lecture-card/lecture-card-big/lecture-card-big.component';
 import {LectureCardSmallComponent} from './add-lecture/add-lecture-card/lecture-card-small/lecture-card-small.component';
-import {ReadNoteComponent} from './read-note/read-note.component';
+import {BrowseNoteComponent} from './browse-note/browse-note.component';
 import {AngularFireStorage, AngularFireStorageModule} from '@angular/fire/storage';
+import { ReadNoteComponent } from './read-note/read-note.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {AngularFireStorage, AngularFireStorageModule} from '@angular/fire/storag
     LoginComponent,
     LectureCardBigComponent,
     LectureCardSmallComponent,
+    BrowseNoteComponent,
     ReadNoteComponent,
   ],
   imports: [
