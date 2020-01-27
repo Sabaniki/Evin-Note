@@ -100,7 +100,8 @@ export class AddLectureComponent implements OnInit {
           .doc(this.lectureCards[i].title)
           .set(Object.assign({}, {
             title: this.lectureCards[i].title,
-            teacherName: this.lectureCards[i].teacherName
+            teacherName: this.lectureCards[i].teacherName,
+            explanatoryText: this.lectureCards[i].explanatoryText
           }))
           .then(() => {
               swal({
@@ -114,7 +115,8 @@ export class AddLectureComponent implements OnInit {
                 text: 'エラーが発生しました！' + reason.toString(),
                 icon: 'error',
               });
-            });
+            }
+          );
       }
     });
   }

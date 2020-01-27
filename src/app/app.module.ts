@@ -15,6 +15,7 @@ import {firebaseConfig} from '../../FirebaseConfig';
 import { LoginComponent } from './login/login.component';
 import { LectureCardBigComponent } from './add-lecture/add-lecture-card/lecture-card-big/lecture-card-big.component';
 import { LectureCardSmallComponent } from './add-lecture/add-lecture-card/lecture-card-small/lecture-card-small.component';
+import { ReadNoteComponent } from './read-note/read-note.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { LectureCardSmallComponent } from './add-lecture/add-lecture-card/lectur
     LoginComponent,
     LectureCardBigComponent,
     LectureCardSmallComponent,
+    ReadNoteComponent,
   ],
   imports: [
     BrowserModule,
