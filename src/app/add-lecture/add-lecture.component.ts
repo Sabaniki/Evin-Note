@@ -17,7 +17,7 @@ export class AddLectureComponent implements OnInit {
       '数学アイコン.svg',
       '類型数学（多胡）',
       '多胡',
-      '多胡先生の類型数学の授業です。○曜日の✗, △時間',
+      '○曜日✗, △時間目の多胡先生の類型数学の授業です。',
       this.onClickSaveButton,
       this.auth,
       this.afs
@@ -26,7 +26,7 @@ export class AddLectureComponent implements OnInit {
       '物理アイコン.svg',
       '類型物理（小佐野）',
       '小佐野',
-      '小佐野先生の類型物理の授業です。○曜日の✗, △時間',
+      '○曜日✗, △時間の小佐野先生の類型物理の授業です。',
       this.onClickSaveButton,
       this.auth,
       this.afs
@@ -78,7 +78,7 @@ export class AddLectureComponent implements OnInit {
 
   ngOnInit() {
     this.auth.user$.subscribe(user => {
-      // for-ofでやると参照的なアレで変更ができない気が下から抑制
+      // for-ofでやると参照的なアレで変更ができない気がしたから抑制
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < this.lectureCards.length; i++) {
         this.lectureCards[i].lectureCards = this.lectureCards;
