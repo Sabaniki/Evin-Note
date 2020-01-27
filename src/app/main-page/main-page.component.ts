@@ -32,14 +32,14 @@ export class MainPageComponent implements OnInit {
   ];
   @Input() cardInfo: MainPageCard;
 
-  constructor(private router: Router, private monitorScreenSizeService: MonitorScreenSizeService, private auth: AuthService) {
+  constructor(private router: Router, public monitorScreenSizeService: MonitorScreenSizeService, private auth: AuthService) {
   }
 
   ngOnInit() {
   }
 
-  redirectPage(path: string): (str: string) => void {
-    return (str: string) => {
+  redirectPage(path: string): () => void {
+    return () => {
       if (this.auth.user$ === null) {
         this.auth.googleSignIn();
       }

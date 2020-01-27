@@ -8,7 +8,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
         </li>
@@ -22,13 +22,12 @@
           <a class="nav-link" href="uplodad-movie">アップロード</a>
         </li>
       </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <app-login class="navbar-text"></app-login>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>
-<!--<ng-template *ngIf="![auth.user$ | async]; else loggedIn">-->
-<!--  &lt;!&ndash;  <a href="" (click)="auth.googleSignIn()" class="display-4">ログイン</a>&ndash;&gt;-->
-<!--</ng-template>-->
-<!--<ng-template #loggedIn>-->
-<!--  <a href="" (click)="auth.signOut()" class="display-4">ログアウト</a>-->
-<!--</ng-template>-->
 <router-outlet></router-outlet>

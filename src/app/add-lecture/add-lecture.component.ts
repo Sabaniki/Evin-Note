@@ -70,7 +70,7 @@ export class AddLectureComponent implements OnInit {
   ];
 
   constructor(private router: Router,
-              private monitorScreenSizeService: MonitorScreenSizeService,
+              public monitorScreenSizeService: MonitorScreenSizeService,
               private auth: AuthService,
               private afs: AngularFirestore
   ) {

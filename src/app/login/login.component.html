@@ -5,10 +5,11 @@
 <!-- User NOT logged in -->
 <ng-template #guest>
   <div class="container">
-    <div class="card card-body bg-light p-2">
-      <h3 class="text-center">現在ログインしていません</h3>
-      <div class="row">
-        <button (click)="auth.googleSignIn()" class="btn btn-dark btn-lg" style="margin: auto">
+<!--    <div class="card card-body bg-dark text-white">-->
+    <div class="bg-dark text-white">
+    <div class="text-center">
+        現在ログインしていません
+        <button (click)="auth.googleSignIn()" class="btn btn-light btn-sm" style="margin: auto">
           ログイン
         </button>
       </div>
@@ -19,12 +20,11 @@
 <!-- User logged in -->
 <ng-template #authenticated>
   <div *ngIf="auth.user$ | async as user" class="container">
-    <div class="card card-body bg-light p-2">
-      <h3 class="text-center">
+<!--    <div class="card card-body bg-dark text-white">-->
+      <div class="bg-dark text-white">
+      <div class="text-center">
         {{ user.displayName }} としてログインしています
-      </h3>
-      <div class="row">
-        <button (click)="auth.signOut()" class="btn btn-dark btn-lg" style="margin: auto">
+        <button (click)="auth.signOut()" class="btn btn-light btn-sm" style="margin: auto">
           ログアウト
         </button>
       </div>
